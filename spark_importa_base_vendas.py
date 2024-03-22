@@ -7,16 +7,16 @@ import os
 spark = SparkSession.builder \
         .master("local[1]")  \
         .appName("test")     \
-        .config("spark.driver.extraClassPath", "C:\\Spark\\spark-3.5.1-bin-hadoop3\\jars\\mysql-connector-j-8.3.0.jar") \
-        .config("spark.executor.extraClassPath", "C:\\Spark\\spark-3.5.1-bin-hadoop3\\jars\\mysql-connector-j-8.3.0.jar") \
+        .config("spark.driver.extraClassPath", "CAMINHO CONECTOR JDBC") \
+        .config("spark.executor.extraClassPath", "CAMINHO CONECTOR JDBC") \
         .getOrCreate()
 spark
 
 # Variaveis para conexão ao banco Mysql
-mysql_user = "root"
-mysql_password = "May1509$"
-mysql_database = "teste_spark"
-mysql_table = "venda_gold_flight_group"
+mysql_user = var_user
+mysql_password = var_password
+mysql_database = var_database
+mysql_table =   var_table
 
 # Variavel url para conexão ao banco Mysql
 mysql_url = "jdbc:mysql://localhost:3306/{0}?user={1}&password={2}".format(mysql_database, mysql_user, mysql_password)
@@ -31,8 +31,8 @@ options = {
 }
 
 # Localiza e abre arquivo que será usado no processo
-if os.path.exists('C:\\Arquivos\\Base_de_vendas.csv'):
-    df = spark.read.format('csv').load('C:\\Arquivos\\Base_de_vendas.csv', sep=';', encoding='iso-8859-1', header=True)
+if os.path.exists('CAMINHO\\Base_de_vendas.csv'):
+    df = spark.read.format('csv').load('CAMINHO\\Base_de_vendas.csv', sep=';', encoding='iso-8859-1', header=True)
 
     # Renomeia nome das colunas 
     df = df.withColumnRenamed('Nome do Passageiro','nome_do_passageiro'
