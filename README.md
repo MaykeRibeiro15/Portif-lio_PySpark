@@ -25,4 +25,4 @@ Foi desenvolvido um processo do qual soluciona a dor de um cliente, o mesmo prec
 
 ## PROPOSTA DESSE PROCESSO: 
 Solucionar a dor do cliente pois ele precisava de uma base unificada com dados de quem fez aquela venda entre outras informações.
-- Pensando em agilidade no desenvolvimento de relatórios, não será necessário importar duas tabelas de dados para o POWE BI e nem utilizar mais relacionamento para trazer informações dessa base, será necessário apenas relacionamento com Dimensão, com isso o relatório fica mais leve e mais rápido.
+- Pensando em agilidade no desenvolvimento de relatórios, não será necessário importar duas tabelas de dados para o POWE BI e nem utilizar mais relacionamento para trazer informações dessa base, será necessário apenas relacionamento com Dimensão de calendário, com isso o relatório fica mais leve e mais rápido.
