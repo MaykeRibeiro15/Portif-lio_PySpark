@@ -34,7 +34,7 @@ options = {
 if os.path.exists('CAMINHO\\Base_de_vendas.csv'):
     df = spark.read.format('csv').load('CAMINHO\\Base_de_vendas.csv', sep=';', encoding='iso-8859-1', header=True)
 
-    # Renomeia nome das colunas 
+    # Renomeia o nome das colunas 
     df = df.withColumnRenamed('Nome do Passageiro','nome_do_passageiro'
                                                 ).withColumnRenamed('Origem','origem'
                                                                     ).withColumnRenamed('Destino','destino'
@@ -44,22 +44,20 @@ if os.path.exists('CAMINHO\\Base_de_vendas.csv'):
                                                                                                                                                     ).withColumnRenamed('ID do Vendedor','id_do_vendedor'
                                                                                                                                                                         ).withColumnRenamed('id','id_da_venda')
 
-    # Convete valor texto para data
+    # Converte valor texto para data
     df = df.withColumn("data_da_viagem", to_date("data_da_viagem","dd/MM/yyyy"))
 
     # Obtem os dados da tabela de vendedores
     df2 = spark.read.format('jdbc').options(**options).load()
-    df2.show()
 
     # Cruza as bases para obter dados dos vendedores
     df_join = df.join(df2,'id_do_vendedor', 'inner')
-    df_join.show()
-
 
     # Sobe os dados para o banco Mysql
     df_join.write.jdbc(url=mysql_url, table=mysql_table, mode="append")
 
     spark.stop()
+    
 else:
     print('Arquivo não localizado')
     spark.stop()
